@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd /home/ec2-user
+./script_run.sh
+chef-client
+chef-client -o role[sample-role-rhel]
+service httpd start
+chkconfig httpd on
+
+echo " <html>
+<body>
+<h1> Hello CFS</h1>
+<h3> Welcome to the Demo</h2>
+<p>
+This is to demonstrate succesfull implementation of Infrastructure/Application deployment through IaC using Pipeline approach !!!
+</p>
+</body>
+</html>" > /var/www/html/index.html
+
+service httpd restart
+
